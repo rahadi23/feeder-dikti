@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "preserve",
+    "noImplicitAny": true,
+    "lib": ["esnext", "dom"],
+    "declaration": true
+  },
+  "include": ["src/feeder-dikti", "**/src/feeder-dikti/*"]
+}
