@@ -54,7 +54,7 @@ Setelah proses autentikasi selesai, maka API dapat diinstal dengan menggunakan p
 npm install @rahadi23/feeder-dikti
 ```
 
-# Penggunaan
+## Penggunaan
 
 Untuk mulai menggunakan API ini, buat instance baru sebagai berikut:
 
