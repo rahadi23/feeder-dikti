@@ -1,6 +1,6 @@
 {
   "name": "@rahadi23/feeder-dikti",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "API of Feeder Dikti Endpoints",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,8 +24,8 @@
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "gulp": "^4.0.2",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "jest": "^26.0.1",
+    "gulp-typescript": "^2.12.2",
+    "jest": "^25.5.4",
     "merge2": "^1.3.0",
     "ts-jest": "^25.5.1",
     "typescript": "^3.8.3"
