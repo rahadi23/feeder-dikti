@@ -4,17 +4,17 @@ API dari Endpoint untuk melakukan operasi Create, Read, Update, dan Delete (CRUD
 
 ## Daftar Isi
 
-- Instalasi
-- Penggunaan
-  - Options
-  - Request
-    - Get Token (`getToken()`)
-    - Get (`get()`)
-    - Insert (`insert()`)
-    - Update (`update()`)
-    - Delete (`delete()`)
-  - Response
-- Troubleshooting
+- [Instalasi](#instalasi)
+- [Penggunaan](#penggunaan)
+  - [Options](#options)
+  - [Request](#request)
+    - [Get Token (`getToken()`)](#get-token-gettoken)
+    - [Get (`get()`)](#get-getaction-options)
+    - [Insert (`insert()`)](#insert-insertaction-record-options)
+    - [Update (`update()`)](#update-updateaction-key-record-options)
+    - [Delete (`delete()`)](#delete-deleteaction-key-options)
+  - [Response](#response)
+- [Troubleshooting](#troubleshooting)
 
 ## Instalasi
 
@@ -130,7 +130,7 @@ feeder.get("Agama", {
 });
 ```
 
-> Daftar `action` yang didukung dapat dilihat di [method_dictionaries.txt](./src/feeder-dikti/method_dictionaries.txt). Secara umum, `action` adalah sama dengan nilai `act` pada body POST request endpoint Feeder Dikti yang berawalan "Get" dengan menghilangkan awalan tersebut. Contoh: "GetAgama" akan menjadi "Agama", "GetListMataKuliah" akan menjadi "ListMataKuliah", dst.
+> Daftar `action` yang didukung dapat dilihat di [method_dictionaries.txt](./src/method_dictionaries.txt). Secara umum, `action` adalah sama dengan nilai `act` pada body POST request endpoint Feeder Dikti yang berawalan "Get" dengan menghilangkan awalan tersebut. Contoh: "GetAgama" akan menjadi "Agama", "GetListMataKuliah" akan menjadi "ListMataKuliah", dst.
 
 ### Insert (`insert(action, record, options)`)
 
