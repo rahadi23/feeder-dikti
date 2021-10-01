@@ -88,11 +88,7 @@ export class FeederDikti {
   async get(action: FeederDikti.GetType, options: FeederDikti.GetOptions = {}) {
     try {
       if (!options || (options && !options.token)) {
-        if (!this.token) {
-          await this.getToken();
-        }
-
-        options.token = this.token;
+        options.token = await this.getToken();
       }
 
       const request = await fetch(
@@ -301,6 +297,7 @@ const GetActions: { [key: string]: string } = {
   DetailBiodataDosen: "DetailBiodataDosen",
   DetailKelasKuliah: "GetDetailKelasKuliah",
   DetailKurikulum: "GetDetailKurikulum",
+  DetailMahasiswaLulusDO: "",
   DetailMataKuliah: "GetDetailMataKuliah",
   DetailNilaiPerkuliahanKelas: "GetDetailNilaiPerkuliahanKelas",
   DetailPerkuliahanMahasiswa: "GetDetailPerkuliahanMahasiswa",
@@ -478,6 +475,7 @@ export namespace FeederDikti {
     | "DetailBiodataDosen"
     | "DetailKelasKuliah"
     | "DetailKurikulum"
+    | "DetailMahasiswaLulusDO"
     | "DetailMataKuliah"
     | "DetailNilaiPerkuliahanKelas"
     | "DetailPerkuliahanMahasiswa"
