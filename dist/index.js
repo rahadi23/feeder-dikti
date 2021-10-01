@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.FeederDikti = void 0;
 const node_fetch_1 = require("node-fetch");
 const FeederDiktiResponse_1 = require("./objects/FeederDiktiResponse");
 /**
@@ -74,10 +75,7 @@ class FeederDikti {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (!options || (options && !options.token)) {
-                    if (!this.token) {
-                        yield this.getToken();
-                    }
-                    options.token = this.token;
+                    options.token = yield this.getToken();
                 }
                 const request = yield node_fetch_1.default(getEndpoint(this.options.host, this.options.endpoint), createPostJsonBody({
                     act: GetActions[action],
@@ -236,6 +234,7 @@ const GetActions = {
     DetailBiodataDosen: "DetailBiodataDosen",
     DetailKelasKuliah: "GetDetailKelasKuliah",
     DetailKurikulum: "GetDetailKurikulum",
+    DetailMahasiswaLulusDO: "GetDetailMahasiswaLulusDO",
     DetailMataKuliah: "GetDetailMataKuliah",
     DetailNilaiPerkuliahanKelas: "GetDetailNilaiPerkuliahanKelas",
     DetailPerkuliahanMahasiswa: "GetDetailPerkuliahanMahasiswa",

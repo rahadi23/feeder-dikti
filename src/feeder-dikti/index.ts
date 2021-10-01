@@ -297,7 +297,7 @@ const GetActions: { [key: string]: string } = {
   DetailBiodataDosen: "DetailBiodataDosen",
   DetailKelasKuliah: "GetDetailKelasKuliah",
   DetailKurikulum: "GetDetailKurikulum",
-  DetailMahasiswaLulusDO: "",
+  DetailMahasiswaLulusDO: "GetDetailMahasiswaLulusDO",
   DetailMataKuliah: "GetDetailMataKuliah",
   DetailNilaiPerkuliahanKelas: "GetDetailNilaiPerkuliahanKelas",
   DetailPerkuliahanMahasiswa: "GetDetailPerkuliahanMahasiswa",
