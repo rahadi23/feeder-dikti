@@ -1,0 +1,22 @@
+export declare type DetailMataKuliah = {
+    id_matkul: string;
+    kode_mata_kuliah: string;
+    nama_mata_kuliah: string;
+    id_prodi: string;
+    nama_program_studi?: string;
+    id_jenis_mata_kuliah: string;
+    id_kelompok_mata_kuliah?: string;
+    sks_mata_kuliah: number;
+    sks_tatap_muka?: number;
+    sks_praktek?: number;
+    sks_praktek_lapangan?: number;
+    sks_simulasi?: number;
+    metode_kuliah?: string;
+    ada_sap?: boolean;
+    ada_silabus?: boolean;
+    ada_bahan_ajar?: boolean;
+    ada_acara_praktek?: boolean;
+    ada_diktat?: boolean;
+    tanggal_mulai_efektif?: string;
+    tanggal_selesai_efektif?: string;
+};

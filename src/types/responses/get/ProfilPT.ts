@@ -1,0 +1,30 @@
+export type ProfilPT = {
+  id_perguruan_tinggi: string;
+  kode_perguruan_tinggi: string;
+  nama_perguruan_tinggi: string;
+  telepon: string;
+  faximile: string;
+  email: string;
+  website: string;
+  jalan?: string;
+  dusun?: string;
+  rt_rw?: string;
+  kelurahan: string;
+  kode_pos?: string;
+  id_wilayah: string;
+  nama_wilayah: string;
+  lintang_bujur: string;
+  bank?: string;
+  unit_cabang?: string;
+  nomor_rekening?: string;
+  mbs: string;
+  luas_tanah_milik: string;
+  luas_tanah_bukan_milik: string;
+  sk_pendirian: string;
+  tanggal_sk_pendirian: string;
+  id_status_milik: string;
+  nama_status_milik: string;
+  status_perguruan_tinggi: string;
+  sk_izin_operasional?: string;
+  tanggal_izin_operasional?: string;
+}

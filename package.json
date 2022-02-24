@@ -1,6 +1,6 @@
 {
   "name": "@rahadi23/feeder-dikti",
-  "version": "2.2.6",
+  "version": "2.3.0",
   "description": "API of Feeder Dikti Endpoints",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

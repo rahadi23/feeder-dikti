@@ -11,7 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FeederDikti = void 0;
 const node_fetch_1 = require("node-fetch");
-const FeederDiktiResponse_1 = require("./objects/FeederDiktiResponse");
+const Response_1 = require("./classes/Response");
+const get_actions_1 = require("./constants/get.actions");
+const insert_actions_1 = require("./constants/insert.actions");
+const delete_actions_1 = require("./constants/delete.actions");
+const update_actions_1 = require("./constants/update.actions");
 /**
  * Mendapatkan URL Endpoint
  */
@@ -54,7 +58,7 @@ class FeederDikti {
                     },
                 }, this.options.agent));
                 const response = yield request.json();
-                const creds = new FeederDiktiResponse_1.default(response);
+                const creds = new Response_1.default(response, "GetToken");
                 if (creds.data) {
                     this.token = creds.data.token;
                     return this.token;
@@ -78,11 +82,11 @@ class FeederDikti {
                     options.token = yield this.getToken();
                 }
                 const request = yield node_fetch_1.default(getEndpoint(this.options.host, this.options.endpoint), createPostJsonBody({
-                    act: GetActions[action],
+                    act: get_actions_1.GetActions[action],
                     body: options,
                 }, this.options.agent));
                 const response = yield request.json();
-                const result = new FeederDiktiResponse_1.default(response);
+                const result = new Response_1.default(response, get_actions_1.GetActions[action]);
                 if (result.data) {
                     return result.data;
                 }
@@ -109,14 +113,14 @@ class FeederDikti {
                     options.token = this.token;
                 }
                 const request = yield node_fetch_1.default(getEndpoint(this.options.host, this.options.endpoint), createPostJsonBody({
-                    act: InsertActions[action],
+                    act: insert_actions_1.InsertActions[action],
                     body: {
                         token: options.token,
                         record,
                     },
                 }, this.options.agent));
                 const response = yield request.json();
-                const result = new FeederDiktiResponse_1.default(response);
+                const result = new Response_1.default(response, insert_actions_1.InsertActions[action]);
                 if (result.data) {
                     return result.data;
                 }
@@ -144,7 +148,7 @@ class FeederDikti {
                     options.token = this.token;
                 }
                 const request = yield node_fetch_1.default(getEndpoint(this.options.host, this.options.endpoint), createPostJsonBody({
-                    act: UpdateActions[action],
+                    act: update_actions_1.UpdateActions[action],
                     body: {
                         token: options.token,
                         key,
@@ -152,7 +156,7 @@ class FeederDikti {
                     },
                 }, this.options.agent));
                 const response = yield request.json();
-                const result = new FeederDiktiResponse_1.default(response);
+                const result = new Response_1.default(response, update_actions_1.UpdateActions[action]);
                 if (result.data) {
                     return result.data;
                 }
@@ -179,14 +183,14 @@ class FeederDikti {
                     options.token = this.token;
                 }
                 const request = yield node_fetch_1.default(getEndpoint(this.options.host, this.options.endpoint), createPostJsonBody({
-                    act: DeleteActions[action],
+                    act: delete_actions_1.DeleteActions[action],
                     body: {
                         token: options.token,
                         key,
                     },
                 }, this.options.agent));
                 const response = yield request.json();
-                const result = new FeederDiktiResponse_1.default(response);
+                const result = new Response_1.default(response, delete_actions_1.DeleteActions[action]);
                 if (result.data) {
                     return result.data;
                 }
@@ -199,168 +203,3 @@ class FeederDikti {
     }
 }
 exports.FeederDikti = FeederDikti;
-const GetActions = {
-    Agama: "GetAgama",
-    AktivitasKuliahMahasiswa: "GetAktivitasKuliahMahasiswa",
-    AktivitasMengajarDosen: "GetAktivitasMengajarDosen",
-    BentukPendidikan: "GetBentukPendidikan",
-    BiodataMahasiswa: "GetBiodataMahasiswa",
-    CountAktivitasMahasiswa: "GetCountAktivitasMahasiswa",
-    CountAktivitasMengajarDosen: "GetCountAktivitasMengajarDosen",
-    CountDosen: "GetCountDosen",
-    CountDosenPembimbing: "GetCountDosenPembimbing",
-    CountDosenPengajarKelasKuliah: "GetCountDosenPengajarKelasKuliah",
-    CountKelasKuliah: "GetCountKelasKuliah",
-    CountKurikulum: "GetCountKurikulum",
-    CountMahasiswa: "GetCountMahasiswa",
-    CountMahasiswaBimbinganDosen: "GetCountMahasiswaBimbinganDosen",
-    CountMahasiswaLulusDO: "GetCountMahasiswaLulusDO",
-    CountMataKuliah: "GetCountMataKuliah",
-    CountMatkulKurikulum: "GetCountMatkulKurikulum",
-    CountNilaiPerkuliahanKelas: "GetCountNilaiPerkuliahanKelas",
-    CountNilaiTransferPendidikanMahasiswa: "GetCountNilaiTransferPendidikanMahasiswa",
-    CountPenugasanSemuaDosen: "GetCountPenugasanSemuaDosen",
-    CountPerguruanTinggi: "GetCountPerguruanTinggi",
-    CountPeriodePerkuliahan: "GetCountPeriodePerkuliahan",
-    CountPerkuliahanMahasiswa: "GetCountPerkuliahanMahasiswa",
-    CountPesertaKelasKuliah: "GetCountPesertaKelasKuliah",
-    CountPrestasiMahasiswa: "GetCountPrestasiMahasiswa",
-    CountProdi: "GetCountProdi",
-    CountRiwayatNilaiMahasiswa: "GetCountRiwayatNilaiMahasiswa",
-    CountRiwayatPendidikanMahasiswa: "GetCountRiwayatPendidikanMahasiswa",
-    CountSkalaNilaiProdi: "GetCountSkalaNilaiProdi",
-    CountSubstansiKuliah: "GetCountSubstansiKuliah",
-    DataLengkapMahasiswaProdi: "GetDataLengkapMahasiswaProdi",
-    DetailBiodataDosen: "DetailBiodataDosen",
-    DetailKelasKuliah: "GetDetailKelasKuliah",
-    DetailKurikulum: "GetDetailKurikulum",
-    DetailMahasiswaLulusDO: "GetDetailMahasiswaLulusDO",
-    DetailMataKuliah: "GetDetailMataKuliah",
-    DetailNilaiPerkuliahanKelas: "GetDetailNilaiPerkuliahanKelas",
-    DetailPerkuliahanMahasiswa: "GetDetailPerkuliahanMahasiswa",
-    DosenPengajarKelasKuliah: "GetDosenPengajarKelasKuliah",
-    IkatanKerjaSdm: "GetIkatanKerjaSdm",
-    Jabfung: "GetJabfung",
-    JalurMasuk: "GetJalurMasuk",
-    JenisAktivitasMahasiswa: "GetJenisAktivitasMahasiswa",
-    JenisEvaluasi: "GetJenisEvaluasi",
-    JenisKeluar: "GetJenisKeluar",
-    JenisPendaftaran: "GetJenisPendaftaran",
-    JenisPrestasi: "GetJenisPrestasi",
-    JenisSertifikasi: "GetJenisSertifikasi",
-    JenisSMS: "GetJenisSMS",
-    JenisSubstansi: "GetJenisSubstansi",
-    JenisTinggal: "GetJenisTinggal",
-    JenjangPendidikan: "GetJenjangPendidikan",
-    KategoriKegiatan: "GetKategoriKegiatan",
-    KebutuhanKhusus: "GetKebutuhanKhusus",
-    KRSMahasiswa: "GetKRSMahasiswa",
-    LembagaPengangkat: "GetLembagaPengangkat",
-    LevelWilayah: "GetLevelWilayah",
-    ListAktivitasMahasiswa: "GetListAktivitasMahasiswa",
-    ListAnggotaAktivitasMahasiswa: "GetListAnggotaAktivitasMahasiswa",
-    ListBimbingMahasiswa: "GetListBimbingMahasiswa",
-    ListDosen: "GetListDosen",
-    ListKelasKuliah: "GetListKelasKuliah",
-    ListKurikulum: "GetListKurikulum",
-    ListMahasiswa: "GetListMahasiswa",
-    ListMataKuliah: "GetListMataKuliah",
-    ListNilaiPerkuliahanKelas: "GetListNilaiPerkuliahanKelas",
-    ListPenugasanDosen: "GetListPenugasanDosen",
-    ListPenugasanSemuaDosen: "GetListPenugasanSemuaDosen",
-    ListPerkuliahanMahasiswa: "GetListPerkuliahanMahasiswa",
-    ListPrestasiMahasiswa: "GetListPrestasiMahasiswa",
-    ListRiwayatPendidikanMahasiswa: "GetListRiwayatPendidikanMahasiswa",
-    ListSubstansiKuliah: "GetListSubstansiKuliah",
-    ListUjiMahasiswa: "GetListUjiMahasiswa",
-    MahasiswaBimbinganDosen: "GetMahasiswaBimbinganDosen",
-    MatkulKurikulum: "GetMatkulKurikulum",
-    Negara: "GetNegara",
-    NilaiTransferPendidikanMahasiswa: "GetNilaiTransferPendidikanMahasiswa",
-    PangkatGolongan: "GetPangkatGolongan",
-    Pekerjaan: "GetPekerjaan",
-    Pembiayaan: "GetPembiayaan",
-    Penghasilan: "GetPenghasilan",
-    PerhitunganSKS: "GetPerhitunganSKS",
-    Periode: "GetPeriode",
-    PesertaKelasKuliah: "GetPesertaKelasKuliah",
-    Prodi: "GetProdi",
-    ProfilPT: "GetProfilPT",
-    RiwayatFungsionalDosen: "GetRiwayatFungsionalDosen",
-    RiwayatNilaiMahasiswa: "GetRiwayatNilaiMahasiswa",
-    RiwayatPangkatDosen: "GetRiwayatPangkatDosen",
-    RiwayatPendidikanDosen: "GetRiwayatPendidikanDosen",
-    RiwayatPenelitianDosen: "GetRiwayatPenelitianDosen",
-    RiwayatSertifikasiDosen: "GetRiwayatSertifikasiDosen",
-    Semester: "GetSemester",
-    StatusKeaktifanPegawai: "GetStatusKeaktifanPegawai",
-    StatusKepegawaian: "GetStatusKepegawaian",
-    StatusMahasiswa: "GetStatusMahasiswa",
-    TahunAjaran: "GetTahunAjaran",
-    TingkatPrestasi: "GetTingkatPrestasi",
-    TranskripMahasiswa: "GetTranskripMahasiswa",
-    Wilayah: "GetWilayah",
-    AlatTransportasi: "GetAlatTransportasi",
-};
-const InsertActions = {
-    AktivitasMahasiswa: "InsertAktivitasMahasiswa",
-    AnggotaAktivitasMahasiswa: "InsertAnggotaAktivitasMahasiswa",
-    BimbingMahasiswa: "InsertBimbingMahasiswa",
-    BiodataMahasiswa: "InsertBiodataMahasiswa",
-    DosenPengajarKelasKuliah: "InsertDosenPengajarKelasKuliah",
-    KelasKuliah: "InsertKelasKuliah",
-    Kurikulum: "InsertKurikulum",
-    MataKuliah: "InsertMataKuliah",
-    MatkulKurikulum: "InsertMatkulKurikulum",
-    NilaiTransferPendidikanMahasiswa: "InsertNilaiTransferPendidikanMahasiswa",
-    PeriodePerkuliahan: "InsertPeriodePerkuliahan",
-    PerkuliahanMahasiswa: "InsertPerkuliahanMahasiswa",
-    PesertaKelasKuliah: "InsertPesertaKelasKuliah",
-    PrestasiMahasiswa: "InsertPrestasiMahasiswa",
-    RiwayatPendidikanMahasiswa: "InsertRiwayatPendidikanMahasiswa",
-    SubstansiKuliah: "InsertSubstansiKuliah",
-    TranskripMahasiswa: "InsertTranskripMahasiswa",
-    UjiMahasiswa: "InsertUjiMahasiswa",
-    MahasiswaLulusDO: "InsertMahasiswaLulusDO",
-    DosenPembimbing: "InsertDosenPembimbing",
-    SkalaNilaiProdi: "InsertSkalaNilaiProdi",
-    DayaTampungMahasiswa: "InsertDayaTampungMahasiswa",
-};
-const UpdateActions = {
-    BiodataMahasiswa: "UpdateBiodataMahasiswa",
-    DosenPengajarKelasKuliah: "UpdateDosenPengajarKelasKuliah",
-    KelasKuliah: "UpdateKelasKuliah",
-    Kurikulum: "UpdateKurikulum",
-    MataKuliah: "UpdateMataKuliah",
-    NilaiPerkuliahanKelas: "UpdateNilaiPerkuliahanKelas",
-    NilaiTransferPendidikanMahasiswa: "UpdateNilaiTransferPendidikanMahasiswa",
-    PeriodePerkuliahan: "UpdatePeriodePerkuliahan",
-    PerkuliahanMahasiswa: "UpdatePerkuliahanMahasiswa",
-    PrestasiMahasiswa: "UpdatePrestasiMahasiswa",
-    RiwayatPendidikanMahasiswa: "UpdateRiwayatPendidikanMahasiswa",
-    SubstansiKuliah: "UpdateSubstansiKuliah",
-};
-const DeleteActions = {
-    AktivitasMahasiswa: "DeleteAktivitasMahasiswa",
-    AnggotaAktivitasMahasiswa: "DeleteAnggotaAktivitasMahasiswa",
-    BimbingMahasiswa: "DeleteBimbingMahasiswa",
-    BiodataMahasiswa: "DeleteBiodataMahasiswa",
-    DosenPengajarKelasKuliah: "DeleteDosenPengajarKelasKuliah",
-    KelasKuliah: "DeleteKelasKuliah",
-    Kurikulum: "DeleteKurikulum",
-    MataKuliah: "DeleteMataKuliah",
-    MatkulKurikulum: "DeleteMatkulKurikulum",
-    NilaiTransferPendidikanMahasiswa: "DeleteNilaiTransferPendidikanMahasiswa",
-    PeriodePerkuliahan: "DeletePeriodePerkuliahan",
-    PerkuliahanMahasiswa: "DeletePerkuliahanMahasiswa",
-    PesertaKelasKuliah: "DeletePesertaKelasKuliah",
-    PrestasiMahasiswa: "DeletePrestasiMahasiswa",
-    RiwayatPendidikanMahasiswa: "DeleteRiwayatPendidikanMahasiswa",
-    SubstansiKuliah: "DeleteSubstansiKuliah",
-    TranskripMahasiswa: "DeleteTranskripMahasiswa",
-    UjiMahasiswa: "DeleteUjiMahasiswa",
-    MahasiswaLulusDO: "DeleteMahasiswaLulusDO",
-    DosenPembimbing: "DeleteDosenPembimbing",
-    SkalaNilaiProdi: "DeleteSkalaNilaiProdi",
-    DayaTampungMahasiswa: "DeleteDayaTampungMahasiswa",
-};

@@ -1,0 +1,1 @@
+export type CountMahasiswa = string;

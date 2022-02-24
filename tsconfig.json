@@ -7,5 +7,5 @@
     "lib": ["esnext", "dom"],
     "declaration": true
   },
-  "include": ["src/feeder-dikti", "**/src/feeder-dikti/*"]
+  "include": ["src/**/*.ts"]
 }

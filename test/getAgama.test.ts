@@ -1,4 +1,4 @@
-import { FeederDikti } from "../src/feeder-dikti";
+import { FeederDikti } from "../src/index";
 import { Agent } from "https";
 
 import constants from "./constants";
